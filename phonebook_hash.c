@@ -2,9 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "phonebook_opt.h"
+#include "phonebook_hash.h"
 
 /* FILL YOUR OWN IMPLEMENTATION HERE! */
+
+
 entry *findName(char lastName[], entry *pHead)
 {
     while (pHead != NULL) {
@@ -25,3 +27,14 @@ entry *append(char lastName[], entry *e)
 
     return e;
 }
+
+
+unsigned int BKDRHash(char *str)
+{
+    unsigned int hash = 0;
+    while (*str) {
+        hash = hash * 131 + (*str++);
+    }   
+    return (hash & 0x7FFFFFFF);
+}
+
